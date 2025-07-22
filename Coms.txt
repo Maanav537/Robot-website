@@ -1,1 +1,56 @@
+BuildError
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'video_feed'. Did you mean 'update_speed' instead?
 
+Traceback (most recent call last)
+File "/usr/lib/python3/dist-packages/flask/app.py", line 2548, in __call__
+return self.wsgi_app(environ, start_response)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/app.py", line 2528, in wsgi_app
+response = self.handle_exception(e)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/app.py", line 2525, in wsgi_app
+response = self.full_dispatch_request()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/app.py", line 1822, in full_dispatch_request
+rv = self.handle_user_exception(e)
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in full_dispatch_request
+rv = self.dispatch_request()
+     ^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/app.py", line 1796, in dispatch_request
+return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/pi/Downloads/Robot-website-main/app.py", line 19, in index
+return render_template('index.html')
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/templating.py", line 147, in render_template
+return _render(app, template, context)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/templating.py", line 130, in _render
+rv = template.render(context)
+     ^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 1301, in render
+self.environment.handle_exception()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Open an interactive python shell in this frame
+File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 936, in handle_exception
+raise rewrite_traceback_stack(source=source)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/pi/Downloads/Robot-website-main/templates/index.html", line 91, in top-level template code
+<img id="camera-feed" src="{{ url_for('video_feed') }}" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/000000/FF0000?text=STREAM+ERROR';" alt="Robot Camera Feed" class="w-full h-full object-cover">
+File "/usr/lib/python3/dist-packages/flask/app.py", line 2031, in url_for
+return self.handle_url_build_error(error, endpoint, values)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/usr/lib/python3/dist-packages/flask/app.py", line 2020, in url_for
+rv = url_adapter.build(  # type: ignore[union-attr]
+     
+File "/usr/lib/python3/dist-packages/werkzeug/routing/map.py", line 917, in build
+raise BuildError(endpoint, values, method, self)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'video_feed'. Did you mean 'update_speed' instead?
+The debugger caught an exception in your WSGI application. You can now look at the traceback which led to the error.
+To switch between the interactive traceback and the plaintext one, you can click on the "Traceback" headline. From the text traceback you can also create a paste of it. For code execution mouse-over the frame you want to debug and click on the console icon on the right side.
+
+You can execute arbitrary Python code in the stack frames and there are some extra helpers available for introspection:
+
+dump() shows all variables in the frame
+dump(obj) dumps all that's known about the object
