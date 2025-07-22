@@ -1,0 +1,57 @@
+/* static/style.css */
+body {
+    font-family: 'Inter', sans-serif;
+}
+.control-btn:active, .key-pressed {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+#gimbal-left.key-pressed, #gimbal-right.key-pressed {
+    background-color: #0891b2;
+}
+#move-forward.key-pressed, #move-backward.key-pressed, #move-left.key-pressed, #move-right.key-pressed, #turn-left.key-pressed, #turn-right.key-pressed {
+    background-color: #2563eb;
+}
+.keybind-input {
+    caret-color: transparent; /* Hide the cursor */
+}
+/* Custom styles for range slider */
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #4b5563; /* bg-gray-600 */
+    border-radius: 5px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #06b6d4; /* cyan-500 */
+    cursor: pointer;
+    margin-top: -6px;
+}
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #4b5563;
+    border-radius: 5px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #06b6d4;
+    cursor: pointer;
+}
