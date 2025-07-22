@@ -49,7 +49,11 @@ def gen_frames():
         # Yield the output frame in the byte format
         yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
             bytearray(encodedImage) + b'\r\n')
-
+@app.route('/video_feed')
+def video_feed():
+    """Video streaming route that calls the generator."""
+    return Response(gen_frames(), 
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/control', methods=['POST'])
 def control():
     global current_speed_percent
