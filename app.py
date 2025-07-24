@@ -71,39 +71,52 @@ def control():
     # --- Light Bar Control ---
     elif command == 'light_bar':
         if value == 'on':
-            #lampControl.lampOn(lampControl.LAMP_COLOR)
+            lampControl.lampOn(lampControl.LAMP_COLOR)
             print("Lamp turned ON")
         else:
-            #lampControl.lampOff()
+            lampControl.lampOff()
             print("Lamp turned OFF")
 
     # --- Movement Control ---
     elif command == 'move':
+        # NOTE: Using a small time value (0.1) for continuous movement.
+        # The frontend will send 'stop' when the button is released.
+        move_time = 0.5
         if value == 'forward':
-            mechanum.forward(current_speed_percent)
+            # Corrected function call from 'forward' to 'moveForward'
+            mechanum.moveForward(current_speed_percent, move_time)
             print("Moving forward")
         elif value == 'backward':
-            mechanum.backward(current_speed_percent)
+            # Corrected function call from 'backward' to 'moveBackward'
+            mechanum.moveBackward(current_speed_percent, move_time)
             print("Moving backward")
         elif value == 'left':
-            mechanum.left(current_speed_percent)
+            # Corrected function call from 'left' to 'moveLeft'
+            mechanum.moveLeft(current_speed_percent, move_time)
             print("Strafing left")
         elif value == 'right':
-            mechanum.right(current_speed_percent)
+            # Corrected function call from 'right' to 'moveRight'
+            mechanum.moveRight(current_speed_percent, move_time)
             print("Strafing right")
         elif value == 'stop':
+            # The stop function is correct
             mechanum.stop()
             print("Movement stopped")
 
     # --- Turning Control ---
     elif command == 'turn':
+        # NOTE: Using 'turn' function with positive/negative speed.
+        turn_time = 0.1
         if value == 'left':
-            mechanum.turn_Left(current_speed_percent)
+            # Corrected to use 'turn' with a negative speed
+            mechanum.turn(-current_speed_percent, turn_time)
             print("Turning left")
         elif value == 'right':
-            mechanum.turn_Right(current_speed_percent)
+            # Corrected to use 'turn' with a positive speed
+            mechanum.turn(current_speed_percent, turn_time)
             print("Turning right")
         elif value == 'stop':
+            # The stop function is correct
             mechanum.stop()
             print("Turning stopped")
             
@@ -116,7 +129,9 @@ def control():
         elif value == 'stop':
             print("Gimbal stopped")
 
+    # This will now return a valid JSON response, preventing the client-side error.
     return jsonify(status="success", command=command, value=value)
+
 
 @app.route('/update_speed', methods=['POST'])
 def update_speed():
